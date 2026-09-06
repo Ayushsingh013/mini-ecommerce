@@ -1,0 +1,25 @@
+# Node & Runtime dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# SQLite Database (auto-seeded on server startup)
+server/*.db
+server/*.db-journal
+server/*.db-wal
+server/*.db-shm
+
+# Sockets & Temp files
+*.sock
+*.tmp
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

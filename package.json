@@ -1,0 +1,20 @@
+{
+  "name": "mini-ecommerce",
+  "version": "1.0.0",
+  "description": "A lightweight, full-stack Mini E-Commerce web application for B.Tech CST project submission and viva",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "btech-project",
+    "sqlite",
+    "nodejs",
+    "vanilla-js",
+    "rest-api"
+  ],
+  "author": "Ayush Singh",
+  "license": "MIT"
+}
