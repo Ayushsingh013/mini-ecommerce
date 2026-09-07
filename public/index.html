@@ -248,19 +248,73 @@
           <div class="form-group">
             <label>Select Payment Method</label>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
-              <label style="border: 1px solid var(--border-color); padding: 0.75rem; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-size: 0.85rem;">
+              <label class="payment-method-card active" id="label-pay-upi" style="border: 2px solid var(--primary); padding: 0.75rem; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-size: 0.85rem; background: var(--primary-light);">
                 <input type="radio" name="payment_method" value="UPI" checked style="margin-bottom: 0.35rem;">
-                <div>UPI / QR</div>
+                <div style="font-weight: 700;">⚡ UPI / QR</div>
               </label>
-              <label style="border: 1px solid var(--border-color); padding: 0.75rem; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-size: 0.85rem;">
+              <label class="payment-method-card" id="label-pay-card" style="border: 1px solid var(--border-color); padding: 0.75rem; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-size: 0.85rem;">
                 <input type="radio" name="payment_method" value="Card" style="margin-bottom: 0.35rem;">
-                <div>Card</div>
+                <div>💳 Card</div>
               </label>
-              <label style="border: 1px solid var(--border-color); padding: 0.75rem; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-size: 0.85rem;">
+              <label class="payment-method-card" id="label-pay-cod" style="border: 1px solid var(--border-color); padding: 0.75rem; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-size: 0.85rem;">
                 <input type="radio" name="payment_method" value="COD" style="margin-bottom: 0.35rem;">
-                <div>Cash on Delivery</div>
+                <div>📦 Cash on Delivery</div>
               </label>
             </div>
+          </div>
+
+          <!-- Dynamic UPI & QR Scanner Section -->
+          <div id="payment-box-upi" style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem; background: var(--bg-subtle); text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+              <span class="badge-tag" style="background: var(--success); color: white;">Instant UPI Payment</span>
+              <span style="font-size: 0.8rem; color: var(--text-secondary);">GPay • PhonePe • Paytm • BHIM</span>
+            </div>
+
+            <!-- Dynamic QR Code -->
+            <div style="background: white; padding: 0.75rem; border-radius: var(--radius-md); display: inline-block; box-shadow: var(--shadow-sm); margin: 0.75rem auto; border: 1px solid var(--border-color);">
+              <img id="upi-qr-image" src="" alt="UPI Payment QR Code" style="width: 170px; height: 170px; display: block; border-radius: var(--radius-sm);">
+            </div>
+
+            <div style="margin-top: 0.25rem;">
+              <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">Scan QR to pay <span id="upi-amount-badge" style="color: var(--primary);">₹0</span></p>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem;">Scan using camera or any UPI app on your phone</p>
+            </div>
+
+            <!-- Copy UPI ID Box -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--bg-surface); padding: 0.5rem 0.75rem; border-radius: var(--radius-md); border: 1px dashed var(--border-color); max-width: 320px; margin: 0 auto 0.75rem;">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">UPI ID:</span>
+              <code id="upi-id-display" style="font-weight: 700; color: var(--primary); font-size: 0.9rem;">ayushsingh@upi</code>
+              <button type="button" id="copy-upi-btn" class="btn-link" style="font-size: 0.75rem; padding: 2px 6px; background: var(--primary-light); border-radius: 4px;">Copy</button>
+            </div>
+
+            <!-- Optional UTR Input -->
+            <div style="max-width: 320px; margin: 0 auto; text-align: left;">
+              <label for="upi-ref" style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">UPI Reference / UTR Number (Optional):</label>
+              <input type="text" id="upi-ref" placeholder="e.g. 4235XXXXXXXX" style="font-size: 0.8rem; padding: 0.45rem 0.75rem;">
+            </div>
+          </div>
+
+          <!-- Card Payment Box -->
+          <div id="payment-box-card" style="display: none; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem; background: var(--bg-subtle);">
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label style="font-size: 0.8rem;">Card Number</label>
+              <input type="text" placeholder="4532 •••• •••• 8920" maxlength="19">
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 0.8rem;">Expiry (MM/YY)</label>
+                <input type="text" placeholder="12/28" maxlength="5">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 0.8rem;">CVV</label>
+                <input type="password" placeholder="•••" maxlength="4">
+              </div>
+            </div>
+          </div>
+
+          <!-- Cash on Delivery Box -->
+          <div id="payment-box-cod" style="display: none; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem; background: var(--bg-subtle); text-align: center; font-size: 0.85rem; color: var(--text-secondary);">
+            <p>💵 <strong>Cash on Delivery:</strong> Please keep the exact amount ready in cash when our delivery partner arrives at your address.</p>
           </div>
 
           <div style="background: var(--bg-subtle); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center;">

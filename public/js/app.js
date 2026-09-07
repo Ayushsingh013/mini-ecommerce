@@ -749,12 +749,72 @@ document.addEventListener('DOMContentLoaded', () => {
       const total = state.cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
       document.getElementById('checkout-total-label').textContent = `₹${total.toLocaleString('en-IN')}`;
 
+      // Update Dynamic UPI QR Code for Scanner
+      const upiId = 'ayushsingh@upi';
+      const upiAmountBadge = document.getElementById('upi-amount-badge');
+      const upiQrImage = document.getElementById('upi-qr-image');
+      if (upiAmountBadge) upiAmountBadge.textContent = `₹${total.toLocaleString('en-IN')}`;
+      if (upiQrImage) {
+        const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=Ayush%20Singh&am=${total}&cu=INR&tn=ElectroCart%20Order`;
+        upiQrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=${encodeURIComponent(upiUrl)}`;
+      }
+
       openModal(checkoutModal);
+    });
+
+    // Payment Method Radio Switcher
+    document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const method = e.target.value;
+        const boxUpi = document.getElementById('payment-box-upi');
+        const boxCard = document.getElementById('payment-box-card');
+        const boxCod = document.getElementById('payment-box-cod');
+
+        const labelUpi = document.getElementById('label-pay-upi');
+        const labelCard = document.getElementById('label-pay-card');
+        const labelCod = document.getElementById('label-pay-cod');
+
+        // Reset styles
+        [labelUpi, labelCard, labelCod].forEach(lbl => {
+          if (lbl) {
+            lbl.style.border = '1px solid var(--border-color)';
+            lbl.style.background = 'transparent';
+          }
+        });
+
+        if (boxUpi) boxUpi.style.display = method === 'UPI' ? 'block' : 'none';
+        if (boxCard) boxCard.style.display = method === 'Card' ? 'block' : 'none';
+        if (boxCod) boxCod.style.display = method === 'COD' ? 'block' : 'none';
+
+        const activeLabel = document.getElementById(`label-pay-${method.toLowerCase()}`);
+        if (activeLabel) {
+          activeLabel.style.border = '2px solid var(--primary)';
+          activeLabel.style.background = 'var(--primary-light)';
+        }
+      });
+    });
+
+    // Copy UPI ID Button
+    document.getElementById('copy-upi-btn')?.addEventListener('click', () => {
+      const upiText = document.getElementById('upi-id-display')?.textContent || 'ayushsingh@upi';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(upiText).then(() => {
+          showToast('UPI ID copied to clipboard!');
+        }).catch(() => {
+          showToast('UPI ID: ' + upiText);
+        });
+      } else {
+        showToast('UPI ID: ' + upiText);
+      }
     });
 
     // Place Order Form Submission
     document.getElementById('checkout-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      const payMethod = document.querySelector('input[name="payment_method"]:checked').value;
+      const upiRef = document.getElementById('upi-ref')?.value?.trim();
+      const finalPaymentMethod = (payMethod === 'UPI' && upiRef) ? `UPI (${upiRef})` : payMethod;
 
       const orderPayload = {
         customer_name: document.getElementById('ship-name').value,
@@ -762,7 +822,7 @@ document.addEventListener('DOMContentLoaded', () => {
         address: document.getElementById('ship-address').value,
         city: document.getElementById('ship-city').value,
         postal_code: document.getElementById('ship-zip').value,
-        payment_method: document.querySelector('input[name="payment_method"]:checked').value,
+        payment_method: finalPaymentMethod,
         items: state.cart.map(i => ({ product_id: i.id, quantity: i.quantity }))
       };
 
