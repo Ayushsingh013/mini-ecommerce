@@ -98,17 +98,17 @@ function seedData() {
     console.log('Default accounts seeded: Admin (admin@ecommerce.com) & Student (student@btech.edu)');
   }
 
-  // Check products count
-  const prodCountStmt = db.prepare('SELECT COUNT(*) as count FROM products');
-  const prodCount = prodCountStmt.get().count;
+  // Seed or sync products
+  const checkProd = db.prepare('SELECT id FROM products WHERE name = ?');
+  const insertProd = db.prepare(`
+    INSERT INTO products (name, category, price, original_price, description, image_url, stock, rating, reviews_count, badge)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
 
-  if (prodCount === 0) {
-    const insertProd = db.prepare(`
-      INSERT INTO products (name, category, price, original_price, description, image_url, stock, rating, reviews_count, badge)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-
-    for (const p of seedProducts) {
+  let addedCount = 0;
+  for (const p of seedProducts) {
+    const existing = checkProd.get(p.name);
+    if (!existing) {
       insertProd.run(
         p.name,
         p.category,
@@ -121,8 +121,11 @@ function seedData() {
         p.reviews_count,
         p.badge || ''
       );
+      addedCount++;
     }
-    console.log(`Seeded ${seedProducts.length} initial products.`);
+  }
+  if (addedCount > 0) {
+    console.log(`Catalog updated: added ${addedCount} new products.`);
   }
 }
 

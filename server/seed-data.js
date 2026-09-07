@@ -1,4 +1,5 @@
 module.exports = [
+  // --- Original 12 Products ---
   {
     name: "Sony WH-1000XM5 Wireless Headphones",
     category: "Audio",
@@ -142,5 +143,175 @@ module.exports = [
     rating: 4.7,
     reviews_count: 130,
     badge: "Must Have"
+  },
+
+  // --- NEW 14 EXPANDED PRODUCTS ---
+  {
+    name: "iPad Pro 11\" M4 (256GB, Wi-Fi)",
+    category: "Tablets",
+    price: 99900,
+    original_price: 109900,
+    description: "Ultra Retina XDR display with tandem OLED technology, breakthrough performance powered by the M4 chip, and Apple Pencil Pro support.",
+    image_url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&auto=format&fit=crop&q=80",
+    stock: 10,
+    rating: 4.9,
+    reviews_count: 76,
+    badge: "New Release"
+  },
+  {
+    name: "Asus ROG Zephyrus G16 Gaming Laptop",
+    category: "Laptops",
+    price: 179990,
+    original_price: 199990,
+    description: "Intel Core Ultra 9 185H, NVIDIA GeForce RTX 4070, 2.5K 240Hz OLED ROG Nebula display with CNC aluminum chassis.",
+    image_url: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80",
+    stock: 7,
+    rating: 4.8,
+    reviews_count: 54,
+    badge: "Gaming Beast"
+  },
+  {
+    name: "Sony DualSense Edge Wireless Controller",
+    category: "Gaming",
+    price: 18990,
+    original_price: 21990,
+    description: "High-performance customizable controller for PS5 & PC with swappable stick modules, adjustable triggers, and back buttons.",
+    image_url: "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=600&auto=format&fit=crop&q=80",
+    stock: 15,
+    rating: 4.7,
+    reviews_count: 89,
+    badge: "Pro Gear"
+  },
+  {
+    name: "Google Pixel 9 Pro XL (256GB)",
+    category: "Smartphones",
+    price: 124999,
+    original_price: 134999,
+    description: "Google Tensor G4 with 16GB RAM. Super Actua display, triple rear camera system with 30x Super Res Zoom, and 7 years of OS updates.",
+    image_url: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80",
+    stock: 11,
+    rating: 4.7,
+    reviews_count: 68,
+    badge: "AI Flagship"
+  },
+  {
+    name: "Nothing Ear (2024) Hi-Res Wireless Earbuds",
+    category: "Audio",
+    price: 11999,
+    original_price: 14999,
+    description: "Iconic transparent aesthetic with custom ceramic 11mm dynamic drivers, 45dB Smart ANC, LDAC Hi-Res Audio, and ChatGPT integration.",
+    image_url: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=600&auto=format&fit=crop&q=80",
+    stock: 25,
+    rating: 4.6,
+    reviews_count: 112,
+    badge: "Trending"
+  },
+  {
+    name: "Samsung 49\" Odyssey OLED G9 Curved Gaming Monitor",
+    category: "Accessories",
+    price: 144990,
+    original_price: 169990,
+    description: "Dual QHD 32:9 curved OLED display with 0.03ms response time, 240Hz refresh rate, Neo Quantum Processor Pro, and DisplayHDR True Black 400.",
+    image_url: "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&auto=format&fit=crop&q=80",
+    stock: 5,
+    rating: 4.9,
+    reviews_count: 42,
+    badge: "Ultra-Wide"
+  },
+  {
+    name: "Garmin Fenix 7 Pro Solar Multisport Smartwatch",
+    category: "Wearables",
+    price: 79990,
+    original_price: 89990,
+    description: "Solar-charging Power Glass lens with up to 22 days of battery life, built-in LED flashlight, multi-band GPS, and advanced training metrics.",
+    image_url: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80",
+    stock: 9,
+    rating: 4.8,
+    reviews_count: 38,
+    badge: "Rugged"
+  },
+  {
+    name: "Introduction to Algorithms (CLRS 4th Edition)",
+    category: "Books",
+    price: 1499,
+    original_price: 2199,
+    description: "The definitive algorithms handbook by Cormen, Leiserson, Rivest, and Stein. Comprehensive coverage of modern algorithms, graph theory, and dynamic programming.",
+    image_url: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80",
+    stock: 50,
+    rating: 4.9,
+    reviews_count: 640,
+    badge: "Must Have for CST"
+  },
+  {
+    name: "Elgato Stream Deck MK.2 (15 LCD Keys)",
+    category: "Accessories",
+    price: 13990,
+    original_price: 16990,
+    description: "15 customizable LCD keys to control apps, tools, and platforms with tactile one-touch operation for coding workflows, streaming, and productivity.",
+    image_url: "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=600&auto=format&fit=crop&q=80",
+    stock: 16,
+    rating: 4.8,
+    reviews_count: 95,
+    badge: "Creator Choice"
+  },
+  {
+    name: "Marshall Stanmore III Bluetooth Home Speaker",
+    category: "Audio",
+    price: 31999,
+    original_price: 36999,
+    description: "Re-engineered wider soundstage with room-filling Marshall signature sound, placement compensation, Bluetooth 5.2, and analog brass control knobs.",
+    image_url: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&auto=format&fit=crop&q=80",
+    stock: 14,
+    rating: 4.7,
+    reviews_count: 83,
+    badge: "Vintage Audio"
+  },
+  {
+    name: "SanDisk Extreme PRO 2TB Portable SSD (2000MB/s)",
+    category: "Accessories",
+    price: 18499,
+    original_price: 24999,
+    description: "NVMe performance with up to 2000MB/s read/write speeds, IP55 water & dust resistance, forged aluminum chassis acts as heatsink.",
+    image_url: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=600&auto=format&fit=crop&q=80",
+    stock: 35,
+    rating: 4.8,
+    reviews_count: 210,
+    badge: "Fast Storage"
+  },
+  {
+    name: "Raspberry Pi 5 (8GB RAM Starter Kit)",
+    category: "Electronics",
+    price: 9999,
+    original_price: 11999,
+    description: "Quad-core 64-bit Arm Cortex-A76 processor @ 2.4GHz with PCIe 2.0 interface, dual 4K60p HDMI output, and active cooling case. Perfect for CST IoT projects.",
+    image_url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80",
+    stock: 28,
+    rating: 4.9,
+    reviews_count: 340,
+    badge: "IoT & Lab"
+  },
+  {
+    name: "Herman Miller Embody Ergonomic Office Chair",
+    category: "Accessories",
+    price: 129990,
+    original_price: 149990,
+    description: "Pixelated Support technology that conforms to your micro-movements, fully adjustable arms, pressure distribution, and 12-year warranty.",
+    image_url: "https://images.unsplash.com/photo-1580481077195-731da89f3044?w=600&auto=format&fit=crop&q=80",
+    stock: 6,
+    rating: 4.9,
+    reviews_count: 47,
+    badge: "Ergonomic"
+  },
+  {
+    name: "DJI Mini 4 Pro Drone (Fly More Combo)",
+    category: "Electronics",
+    price: 89990,
+    original_price: 99990,
+    description: "Under 249g ultra-lightweight foldable drone with omnidirectional obstacle sensing, 4K/60fps HDR video, 20km FHD video transmission, and 34-min flight time.",
+    image_url: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=600&auto=format&fit=crop&q=80",
+    stock: 8,
+    rating: 4.8,
+    reviews_count: 72,
+    badge: "4K HDR"
   }
 ];
