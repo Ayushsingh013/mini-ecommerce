@@ -750,13 +750,12 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('checkout-total-label').textContent = `₹${total.toLocaleString('en-IN')}`;
 
       // Update Dynamic UPI QR Code for Scanner
-      const upiId = 'ayushsingh@upi';
+      const upiId = 'ayushsingh829106@oksbi';
       const upiAmountBadge = document.getElementById('upi-amount-badge');
       const upiQrImage = document.getElementById('upi-qr-image');
       if (upiAmountBadge) upiAmountBadge.textContent = `₹${total.toLocaleString('en-IN')}`;
       if (upiQrImage) {
-        const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=Ayush%20Singh&am=${total}&cu=INR&tn=ElectroCart%20Order`;
-        upiQrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=${encodeURIComponent(upiUrl)}`;
+        upiQrImage.src = 'images/ayush-upi-qr.jpg';
       }
 
       openModal(checkoutModal);
@@ -796,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Copy UPI ID Button
     document.getElementById('copy-upi-btn')?.addEventListener('click', () => {
-      const upiText = document.getElementById('upi-id-display')?.textContent || 'ayushsingh@upi';
+      const upiText = 'ayushsingh829106@oksbi';
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(upiText).then(() => {
           showToast('UPI ID copied to clipboard!');
